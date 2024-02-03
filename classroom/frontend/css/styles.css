@@ -1,0 +1,86 @@
+@font-face {
+  font-family: 'Product Sans Regular';
+  src: url(../fonts/Product\ Sans\ Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Product Sans Bold';
+  src: url(../fonts/Product\ Sans\ Bold.ttf);
+}
+
+body {
+  font-family: 'Product Sans Regular';
+  color: rgb(112, 112, 112);
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: 'Product Sans Bold';
+  color: black;
+}
+
+.course-top {
+  height: 100px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.course-thumb {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  cursor: pointer;
+}
+
+.course-top-full {
+  height: 300px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.pp {
+  width: 60px;
+  height: 60px;
+  margin: 5px;
+}
+
+.pp-small {
+  width: 40px;
+  height: 40px;
+  margin: -10px 5px 5px 5px;
+}
+
+.btn-circle {
+  cursor: pointer;
+}
+
+.tab-option {
+  cursor: pointer;
+  transition: color .3s ease-in-out;
+}
+
+.tab-option:hover {
+  color: #1967D2;
+  border-bottom: 4px solid #1967D2;
+}
+
+.tab-option.active {
+  color: #1967D2;
+  border-bottom: 4px solid #1967D2;
+}
+
+.blue-text {
+  color: #1967D2;
+}
+
+.icon-bg {
+  background-color: #1967D2;
+  width: 35px!important;
+  height: 35px!important;
+  display: inline-block;
+  align-items: center;
+  display:flex;
+  justify-content: center;
+}

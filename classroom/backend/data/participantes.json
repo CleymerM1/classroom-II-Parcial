@@ -1,0 +1,61 @@
+[
+    {
+        "id": 1,
+        "nombre": "Krilin",
+        "imagen": "krilin.jpg",
+        "clases": [
+            {
+                "id": 1,
+                "nombre": "POO"
+            },
+            {
+                "id": 2,
+                "nombre": "DW"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "nombre": "Gohan",
+        "imagen": "gohan.jpg",
+        "clases": [
+            {
+                "id": 1,
+                "clase": "POO"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "nombre": "Kakaroto",
+        "imagen": "gohan.jpg",
+        "clases": [
+            {
+                "id": 2,
+                "clase": "POO"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "nombre": "Bulma",
+        "imagen": "bulma.jpg",
+        "clases": [
+            {
+                "id": 1,
+                "clase": "POO"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "nombre": "Cell",
+        "imagen": "cell.jpg",
+        "clases": [
+            {
+                "id": 2,
+                "clase": "DW"
+            }
+        ]
+    }
+]

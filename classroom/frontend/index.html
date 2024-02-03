@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.82.0">
+    <title>Google Classroom</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href=" css/styles.css">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+  </head>
+  <body>
+    
+<header>
+  <!-- Area colapsable de las miniaturas de los cursos -->
+  <div class="collapse bg-light" id="navbarCourses">
+    <div class="container-fluid">
+      <div class="row" id="miniaturas-clases">
+        <!-- Miniaturas de clases -->
+        
+      </div>
+    </div>
+    <hr>
+    <div class="container text-center">
+      <button data-bs-toggle="modal" data-bs-target="#modal-registro-curso" class="btn btn-primary">Agregar curso</button>
+    </div>
+    <hr class="mb-0">
+  </div>
+
+  <!-- Area colapsable de los instructores -->
+  <div class="collapse bg-light" id="navbarInstructors">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Miniaturas de clases -->
+        <div class="col-4 py-4"></div>
+        <div id="instructores" class="col-8 py-4 d-flex" style="justify-content: flex-end;">
+          <!-- lista de instructores -->
+          
+        </div>
+        <hr class="mb-0">
+      </div>
+    </div>
+  </div>
+
+
+  <div class="navbar navbar-light bg-light shadow-sm">
+    <div class="d-flex px-4">
+      <button class="navbar-toggler mx-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCourses" aria-controls="navbarCourses" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        <img src="img/icons/googlelogo_clr_74x24px.svg"> <span class="text-muted small">&nbsp;Classroom</span>
+      </a>
+    </div>
+    <div id="tabs" style="display: none;">
+      <span id="tab-clase" onclick="showTab('clase', 'tab-clase')" class="p-3 mx-2 tab-option active">Clase</span>
+      <span id="tab-asignaciones" onclick="showTab('asignaciones', 'tab-asignaciones')" class="p-3 mx-2 tab-option">Asignaciones</span>
+      <span id="tab-participantes" onclick="showTab('participantes', 'tab-participantes')" class="p-3 mx-2 tab-option">Participantes</span>
+    </div>
+    <div id="img-perfil" class="mx-4 pt-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarInstructors" aria-controls="navbarInstructors" aria-expanded="false" aria-label="Toggle navigation">
+      <img src="img/profile-pics/goku.jpg" onclick="reenderizarInstructores();" class="rounded-circle pp-small">
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- Clases -->
+  <div class="album py-5 bg-light" style="display: block;">
+    <div class="container">
+
+      <div id= "clases-principal" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Participantes -->
+  <section class="py-5 container" style="display: none;" id="participantes">
+    <div class="row py-lg-5">
+      <div class="col-lg-12 mx-auto">
+        <div class="card shadow-sm mb-3">
+          <div class="card-body">
+            <h1 class="blue-text">Estudiantes</h1>
+              <div class="container">
+                <div class="row" id="contenido-participantes">
+                  
+                </div>
+              </div>
+              <button class="btn btn-primary mt-2 ml-auto" data-bs-toggle="modal" data-bs-target="#modal-registro-estudiante">Agregar estudiante</button>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Asignaciones -->
+  <section class="py-5 container" style="display: none;" id="asignaciones">
+    <div class="row py-lg-5">
+      <div class="col-lg-12 mx-auto">
+        <div class="card shadow-sm mb-3">
+          <div class="card-body">
+            <h1 class="blue-text">Asignaciones</h1>
+              <div class="container">
+                <div class="row" id="contenido-asignaciones">
+                  <!-- Asignación 1 -->
+                                    
+                </div>
+              </div>
+              <button data-bs-toggle="modal" data-bs-target="#modal-registro-asignacion"  class="btn btn-primary mt-2 ml-auto">Agregar asignación</button>
+          </div>
+        </div>
+    </div>
+  </section>
+
+
+  <!-- Contenido de clase -->
+  <section class="py-5 container" style="display: none;" id="clase">
+    
+    <div class="row py-lg-5" id="contenido-clase">
+      <div class="col-lg-12 mx-auto">
+        <span class="btn btn-link" onclick="showClasses()">Ver clases</span>
+        <div class="card shadow-sm mb-3">
+          <div class="card-img-top w-full c-full p-5" style="background-image: url( img/backgrounds/img_bookclub.jpg);">
+            <span class="h3 text-white">MM110</span><br>
+            <span class="small text-white">1300</span>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              <span class="text-dark">Descripción: Clase de matemáticas</span><br>
+              <span class="small text-muted">Aula: 102</span>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <!-- Por evaluar -->
+          <div class="col-3">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <p class="card-text">
+                  <span class="text-dark">Por evaluar</span><br>
+                  <hr>
+                  <ul>
+                    <li><span class="small text-muted">Tarea 1 (12/12/2012)</span></li>
+                    <li><span class="small text-muted">Tarea 2 (12/12/2012)</span></li>
+                    <li><span class="small text-muted">Tarea 3 (12/12/2012)</span></li>
+                  </ul>
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-9">
+            <!-- Compartir con la clase -->
+            <div class="card shadow-sm mb-3">
+              <div class="card-body">
+                <p class="card-text">
+                  
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <img src=" img/profile-pics/goku.jpg" class="rounded-circle pp-small">
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="" id="" placeholder="Anunciar algo a tu clase">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Send</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Comentarios Instructor -->
+            <div class="card shadow-sm mb-3">
+              <div class="card-body">
+                <p class="card-text">
+                  <img src=" img/profile-pics/goku.jpg" class="rounded-circle pp">
+                  <span class="h6">Goku</span>
+                  <span class="small text-muted">06:00pm</span>
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam qui beatae eveniet a assumenda possimus voluptatibus veritatis molestias laudantium aliquam porro, recusandae ea commodi voluptatum explicabo ad quo nostrum corrupti culpa. Eum expedita nobis iure nisi obcaecati alias facere natus velit magni tempora dolor, atque deserunt et rem nulla excepturi!
+                </p>
+                <hr>
+                <!-- Respuestas -->
+                <div class="ms-4">
+                  <p class="text-muted">
+                    <span class="h6">Gohan </span><span class="small text-muted">(12:00)</span> : Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, laborum.
+                  </p>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="" id="" placeholder="Nuevo comentario">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Send</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  </main>
+  <!--Modal para registrar estudiantes-->
+  <div class="modal" id="modal-registro-estudiante" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Registrar estudiante</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            <label for="">Nombre del estudiante</label>
+            <input id="txt-nombre-estudiante" class="form-control form-control-sm" type="text" placeholder="Nombre del estudiante" aria-label=".form-control-lg example">
+            <label for="">Imagen</label>
+            <input id="txt-imagen-estudiante" class="form-control form-control-sm" type="text" placeholder="ejemplo: goku.jpg" aria-label=".form-control-lg example">
+          </form>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancelar</button>
+          <button onclick="registrarEstudiante();" data-bs-dismiss="modal" type="button" class="btn btn-primary">Registrar estudiante</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Modal para registrar instructores-->
+  <div class="modal" id="modal-registro-instructores" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Registrar instructor</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            <label for="">Usuario</label>
+            <input id="txt-usuario-instructor" class="form-control form-control-sm" type="text" placeholder="nombre de usuario" aria-label=".form-control-lg example">
+            
+            <label for="">Contraseña</label>
+            <input id="txt-contraseña-instructor" class="form-control form-control-sm" type="password" placeholder="password" aria-label=".form-control-lg example">
+            
+            <label for="">Nombre</label>
+            <input id="txt-nombre-instructor" class="form-control form-control-sm" type="text" placeholder="nombre de instructor" aria-label=".form-control-lg example">
+            
+            <label for="">Imagen</label>
+            <input id="txt-imagen-instructor" class="form-control form-control-sm" type="text" placeholder="ejemplo: goku.jpg" aria-label=".form-control-lg example">
+          </form>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancelar</button>
+          <button onclick="registrarInstructor();" data-bs-dismiss="modal" type="button" class="btn btn-primary">Registrar instructor</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Modal para registrar asignacion-->
+  <div class="modal" id="modal-registro-asignacion" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Registrar nueva asignacion</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            <label for="">Titulo</label>
+            <input id="txt-nombre-asignacion" class="form-control form-control-sm" type="text" placeholder="Titulo de la asignación" aria-label=".form-control-lg example">
+            <label for="">puntos</label>
+            <input id="txt-puntos-asignacion" class="form-control form-control-sm" type="number" placeholder="ejemplo:10" aria-label=".form-control-lg example">
+          </form>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancelar</button>
+          <button onclick="registrarAsignacion();" data-bs-dismiss="modal" type="button" class="btn btn-primary">Registrar estudiante</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Modal para registrar curso-->
+  <div class="modal" id="modal-registro-curso" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Registrar nuevo curso</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            <label for="">Seccion</label>
+            <input id="txt-seccion-clase" class="form-control form-control-sm" type="text" placeholder="Seccion de la clase" aria-label=".form-control-lg example">
+            <label for="">nombre de la clase</label>
+            <input id="txt-nombre-clase" class="form-control form-control-sm" type="text" placeholder="ejemplo: AED" aria-label=".form-control-lg example">
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Descripcion</label>
+              <textarea class="form-control" id="txt-descripcion-clase" rows="3"></textarea>
+            </div>
+            <label for="">Numero de aula</label>
+            <input id="txt-aula-clase" class="form-control form-control-sm" type="number" placeholder="ejemplo: 110" aria-label=".form-control-lg example">
+            
+          </form>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancelar</button>
+          <button onclick="registrarClase();" data-bs-dismiss="modal" type="button" class="btn btn-primary">Registrar clase</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+  <script src=" js/controlador.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      
+  </body>
+</html>
